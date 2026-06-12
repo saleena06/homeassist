@@ -22,7 +22,7 @@ exports.getAllProviders = async (req, res) => {
         {
           model: ServiceType
         }
-      ]
+      ] 
     });
 
     res.status(200).json(providers);

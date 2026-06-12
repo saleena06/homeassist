@@ -11,7 +11,6 @@ module.exports = {
       service_name: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true
       }
     });
   },
