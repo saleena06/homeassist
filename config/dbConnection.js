@@ -1,11 +1,16 @@
 const { Sequelize } = require("sequelize");
 
-const sequelize = new Sequelize(process.env.DB_NAME, "postgres", process.env.DB_PASSWORD, {
-  host: "localhost",
-  port: 5432,
-  dialect: "postgres",
-  logging: false,
-});
+const sequelize = new Sequelize(
+  process.env.DB_NAME,
+  "postgres",
+  process.env.DB_PASSWORD,
+  {
+    host: "localhost",
+    port: 5432,
+    dialect: "postgres",
+    logging: false,
+  }
+);
 
 const connectDB = async () => {
   try {
