@@ -3,10 +3,31 @@ const router = express.Router();
 const ReviewController = require("../controllers/review.controller");
 const authMiddleware = require("../middlewares/auth.middleware");
 
-router.post("/", authMiddleware, ReviewController.createReview);
+const validate = require("../middlewares/validate.middleware");
 
-router.get("/", authMiddleware, ReviewController.getAllReviews);
+const reviewSchema = require("../validations/review.validation");
 
-router.delete("/:id", authMiddleware, ReviewController.deleteReview);
+router.post("/", validate(reviewSchema), ReviewController.createReview);
+
+router.post(
+  "/",
+  validate(reviewSchema),
+  authMiddleware,
+  ReviewController.createReview
+);
+
+router.get(
+  "/",
+  validate(reviewSchema),
+  authMiddleware,
+  ReviewController.getAllReviews
+);
+
+router.delete(
+  "/:id",
+  validate(reviewSchema),
+  authMiddleware,
+  ReviewController.deleteReview
+);
 
 module.exports = router;

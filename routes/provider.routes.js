@@ -3,14 +3,38 @@ const router = express.Router();
 const ProviderController = require("../controllers/provider.controller");
 const authMiddleware = require("../middlewares/auth.middleware");
 
-router.post("/", authMiddleware, ProviderController.createProvider);
+const validate = require("../middlewares/validate.middleware");
 
-router.get("/", authMiddleware, ProviderController.getAllProviders);
+const providerSchema = require("../validations/provider.validation");
 
-router.get("/:id", authMiddleware, ProviderController.getProviderById);
+router.post("/", validate(providerSchema), ProviderController.createProvider);
 
-router.put("/:id", authMiddleware, ProviderController.updateProvider);
+router.get(
+  "/",
+  validate(providerSchema),
+  authMiddleware,
+  ProviderController.getAllProviders
+);
 
-router.delete("/:id", authMiddleware, ProviderController.deleteProvider);
+router.get(
+  "/:id",
+  validate(providerSchema),
+  authMiddleware,
+  ProviderController.getProviderById
+);
+
+router.put(
+  "/:id",
+  validate(providerSchema),
+  authMiddleware,
+  ProviderController.updateProvider
+);
+
+router.delete(
+  "/:id",
+  validate(providerSchema),
+  authMiddleware,
+  ProviderController.deleteProvider
+);
 
 module.exports = router;
