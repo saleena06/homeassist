@@ -18,9 +18,14 @@ router.post(
 
 router.get(
   "/",
-  validate(reviewSchema),
+ // validate(reviewSchema),
   authMiddleware,
   ReviewController.getAllReviews
+);
+router.get(
+    "/paginated",
+    authMiddleware,
+    ReviewController.getPaginatedReviews
 );
 
 router.delete(

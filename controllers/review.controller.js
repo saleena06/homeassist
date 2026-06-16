@@ -1,4 +1,30 @@
 const { Review, User, Provider } = require("../models");
+const getPagination = require('../utils/pagination');
+exports.getPaginatedReviews = async (req, res) => {
+  try {
+    const { page, limit, offset } = getPagination(req);
+
+    const reviews = await Review.findAndCountAll({
+      limit,
+      offset,
+      include: [User, Provider],
+    });
+
+    res.status(200).json({
+      success: true,
+      totalRecords: reviews.count,
+      currentPage: page,
+      totalPages: Math.ceil(reviews.count / limit),
+      data: reviews.rows,
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
 
 exports.createReview = async (req, res) => {
   try {

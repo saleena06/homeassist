@@ -9,16 +9,22 @@ const providerSchema = require("../validations/provider.validation");
 
 router.post("/", validate(providerSchema), ProviderController.createProvider);
 
+
 router.get(
   "/",
-  validate(providerSchema),
+ // validate(providerSchema),
   authMiddleware,
   ProviderController.getAllProviders
+);
+router.get(
+    "/paginated",
+    authMiddleware,
+    ProviderController.getPaginatedProviders
 );
 
 router.get(
   "/:id",
-  validate(providerSchema),
+ // validate(providerSchema),
   authMiddleware,
   ProviderController.getProviderById
 );

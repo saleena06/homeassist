@@ -12,5 +12,10 @@ router.patch(
   authMiddleware,
   ServiceRequestController.updateStatus
 );
+router.get(
+  "/paginated",
+  authMiddleware,
+  ServiceRequestController.getPaginatedRequests
+);
 
 module.exports = router;

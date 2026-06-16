@@ -1,5 +1,32 @@
 const { Provider, ServiceType } = require("../models");
+const getPagination = require('../utils/pagination');
+exports.getPaginatedProviders = async (req, res) => {
+  try {
+    const { limit, offset, page } = getPagination(req);
 
+    const providers = await Provider.findAndCountAll({
+      limit,
+      offset,
+      include: [
+        {
+          model: ServiceType,
+        },
+      ],
+    });
+
+    res.status(200).json({
+      totalRecords: providers.count,
+      currentPage: page,
+      totalPages: Math.ceil(providers.count / limit),
+      data: providers.rows,
+    });
+    console.log(req.query);
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
 exports.createProvider = async (req, res) => {
   try {
     const provider = await Provider.create(req.body);

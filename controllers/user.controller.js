@@ -1,4 +1,32 @@
 const { User } = require("../models");
+const getPagination = require('../utils/pagination');
+exports.getPaginatedUsers = async (req, res) => {
+  try {
+    const { page, limit, offset } = getPagination(req);
+
+    const users = await User.findAndCountAll({
+      limit,
+      offset,
+      attributes: {
+        exclude: ["password"],
+      },
+    });
+
+    return res.status(200).json({
+      success: true,
+      totalRecords: users.count,
+      currentPage: page,
+      totalPages: Math.ceil(users.count / limit),
+      data: users.rows,
+    });
+
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
 
 exports.getAllUsers = async (req, res) => {
   try {
