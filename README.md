@@ -2,7 +2,6 @@
 
 A full-stack service booking platform that allows users to find and request home services such as plumbing, electrical work, cleaning, and other household assistance. Users can register, log in, create service requests, review providers, and manage their profiles.
 
----
 
 ## Tech Stack
 
@@ -18,7 +17,6 @@ A full-stack service booking platform that allows users to find and request home
 ### API Testing
 - Insomnia
 
----
 
 ## Features
 
@@ -71,7 +69,6 @@ Examples:
 - JWT Authentication Middleware
 - Protected APIs
 
----
 
 ## Project Structure
 
@@ -123,7 +120,6 @@ HomeAssist/
 └── README.md
 ```
 
----
 
 ## Database Tables
 
@@ -188,7 +184,6 @@ created_at
 updated_at
 ```
 
----
 
 ## Setup Instructions
 
@@ -199,7 +194,7 @@ git clone <repository-url>
 cd HomeAssist
 ```
 
----
+
 
 ### 2️⃣ Install Dependencies
 
@@ -207,7 +202,6 @@ cd HomeAssist
 npm install
 ```
 
----
 
 ### 3️⃣ Create .env File
 
@@ -223,7 +217,6 @@ DB_PASSWORD=your_password
 JWT_SECRET=your_secret_key
 ```
 
----
 
 ### 4️⃣ Create Database
 
@@ -231,7 +224,6 @@ JWT_SECRET=your_secret_key
 CREATE DATABASE homeassist_db;
 ```
 
----
 
 ### 5️⃣ Run Migrations
 
@@ -239,7 +231,6 @@ CREATE DATABASE homeassist_db;
 npx sequelize-cli db:migrate
 ```
 
----
 
 ### 6️⃣ Run Seeders
 
@@ -247,7 +238,6 @@ npx sequelize-cli db:migrate
 npx sequelize-cli db:seed:all
 ```
 
----
 
 ### 7️⃣ Start Server
 
@@ -261,7 +251,6 @@ or
 nodemon app.js
 ```
 
----
 
 ## Server
 
@@ -269,7 +258,6 @@ nodemon app.js
 http://localhost:3000
 ```
 
----
 
 ## Authentication APIs
 
@@ -291,7 +279,6 @@ Request:
 }
 ```
 
----
 
 ### Login User
 
@@ -317,7 +304,7 @@ Response:
 }
 ```
 
----
+
 
 ## Protected Routes
 
@@ -327,7 +314,6 @@ Pass JWT Token in Header:
 Authorization: Bearer jwt_token_here
 ```
 
----
 
 ## Pagination
 
@@ -349,7 +335,6 @@ Example:
 GET /api/providers?page=2&limit=3
 ```
 
----
 
 ## Validation
 
@@ -369,7 +354,6 @@ Example Error:
 }
 ```
 
----
 
 ## Testing APIs
 
@@ -392,7 +376,6 @@ Test Flow:
 9. Test Pagination
 ```
 
----
 
 ## Future Enhancements
 
@@ -405,7 +388,6 @@ Test Flow:
 - Dashboard Analytics
 - Frontend Integration (React)
 
----
 
 ## Author
 
