@@ -1,4 +1,4 @@
-const { Provider, ServiceType } = require("../models");
+const { Provider, ServiceType ,ServiceRequest, User} = require("../models");
 const getPagination = require('../utils/pagination');
 exports.getPaginatedProviders = async (req, res) => {
   try {
@@ -41,7 +41,28 @@ exports.createProvider = async (req, res) => {
 
 exports.getAllProviders = async (req, res) => {
   try {
+    const { serviceid } = req.query;
+  console.log("Received service query:", serviceid);
+    // If no service is provided, return all providers
+    if (!serviceid) {
+      const providers = await Provider.findAll({
+        include: [
+          {
+            model: ServiceType,
+          },
+        ],
+      });
+
+      return res.status(200).json(providers);
+    }
+   
+   
+    
+    // Get providers of that service
     const providers = await Provider.findAll({
+      where: {
+        service_type_id: serviceid,
+      },
       include: [
         {
           model: ServiceType,
@@ -50,12 +71,69 @@ exports.getAllProviders = async (req, res) => {
     });
 
     res.status(200).json(providers);
+
   } catch (error) {
     res.status(500).json({
       message: error.message,
     });
   }
+}; 
+
+exports.getProviderBookings = async (req, res) => {
+  try {
+    const bookings = await ServiceRequest.findAll({
+      where: {
+        provider_id: req.user.id,
+      },
+      include: [
+        {
+          model: User,
+          as: "customer",
+          attributes: ["id", "name", "email"],
+        },
+      ],
+      order: [["date", "DESC"]],
+    });
+
+    res.status(200).json({
+      success: true,
+      bookings,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
 };
+exports.updateBookingStatus = async (req, res) => {
+  try {
+    const request = await ServiceRequest.findByPk(req.params.id);
+
+    if (!request) {
+      return res.status(404).json({
+        success: false,
+        message: "Booking not found",
+      });
+    }
+
+    await request.update({
+      status: req.body.status,
+    });
+
+    res.status(200).json({
+      success: true,
+      booking: request,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+
 
 exports.getProviderById = async (req, res) => {
   try {

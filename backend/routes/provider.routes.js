@@ -21,6 +21,17 @@ router.get(
     authMiddleware,
     ProviderController.getPaginatedProviders
 );
+router.get(
+  "/bookings",
+  authMiddleware,
+  ProviderController.getProviderBookings
+);
+
+router.put(
+  "/bookings/:id",
+  authMiddleware,
+  ProviderController.updateBookingStatus
+);
 
 router.get(
   "/:id",

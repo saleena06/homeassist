@@ -8,6 +8,10 @@ module.exports = (sequelize, DataTypes) => {
       experience_years: DataTypes.INTEGER,
       city: DataTypes.STRING,
       address: DataTypes.TEXT,
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       service_type_id: DataTypes.INTEGER,
       rating: DataTypes.FLOAT,
     },

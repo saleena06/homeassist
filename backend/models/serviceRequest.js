@@ -5,7 +5,14 @@ module.exports = (sequelize, DataTypes) => {
       user_id: DataTypes.INTEGER,
       provider_id: DataTypes.INTEGER,
       description: DataTypes.TEXT,
-      status: DataTypes.BOOLEAN,
+      status:  {
+        type: DataTypes.STRING,
+        defaultValue: "pending",
+      },
+      date: {
+        type: DataTypes.DATEONLY,
+        allowNull: true,
+      },
     },
     {
       tableName: "service_requests",
@@ -16,10 +23,12 @@ module.exports = (sequelize, DataTypes) => {
   ServiceRequest.associate = (models) => {
     ServiceRequest.belongsTo(models.User, {
       foreignKey: "user_id",
+      as: "customer",
     });
 
     ServiceRequest.belongsTo(models.Provider, {
       foreignKey: "provider_id",
+      as: "provider",
     });
   };
 

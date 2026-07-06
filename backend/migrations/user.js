@@ -33,6 +33,7 @@ module.exports = {
         type: Sequelize.ENUM("customer", "provider"),
         defaultValue: "customer",
       },
+      
 
       created_at: {
         type: Sequelize.DATE,

@@ -6,11 +6,16 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      icon_name: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
     },
     {
       tableName: "service_types",
       timestamps: false,
-    }
+    },
+    
   );
 
   ServiceType.associate = (models) => {
@@ -18,6 +23,6 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "service_type_id",
     });
   };
-
+  
   return ServiceType;
 };
