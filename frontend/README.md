@@ -1,16 +1,93 @@
-# React + Vite
+# HomeAssist Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React + Vite frontend for **HomeAssist**, a Local Service Provider Directory application. It allows customers to find and book service providers while enabling providers to manage booking requests and profiles.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+### Customer
+- Register and Login
+- Browse service categories
+- View service providers
+- Book providers
+- View booking history
+- Manage profile
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Provider
+- Register and Login
+- View booking requests
+- Accept booking requests
+- Manage profile
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Tech Stack
+
+- React
+- Vite
+- React Router DOM
+- Axios
+- Tailwind CSS
+- Lucide React
+
+
+## Installation
+
+git clone <repository-url>
+cd homeassist-frontend
+npm install
+npm run dev
+
+
+Application runs at:
+
+http://localhost:5173
+
+
+## Project Structure
+
+src/
+├── api/
+├── components/
+├── context/
+├── layouts/
+├── pages/
+├── routes/
+├── App.jsx
+└── main.jsx
+
+## API
+
+The frontend communicates with the backend through Axios.
+
+Default backend URL:
+
+http://localhost:3000/api
+
+
+## Main Pages
+
+- Login
+- Register
+- Dashboard
+- Services
+- Providers
+- Profile
+- My Bookings
+- Provider Dashboard
+
+
+## Scripts
+
+
+npm run dev      # Start development server
+npm run build    # Build for production
+npm run preview  # Preview production build
+
+
+
+## Requirements
+
+- Node.js
+- npm
+- HomeAssist Backend API
+- PostgreSQL Database
